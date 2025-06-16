@@ -1,60 +1,70 @@
 # Screen Information
 experiment:
-  id: ""  # Experiment identifier
-  notebook_entries: ""  # Links or references to lab notebook entries
+  id: "KMM Expt37A"  # Experiment identifier
+  notebook_entries: "Kilimanjaro_HeLa 5k CenpT Mitotracker Vimentin.xlsx"  # Links or references to lab notebook entries
   dates: 
-    start: ""
-    end: ""
+    start: "2025-02-26"
+    end: "2025-04-28"
 
 # Cellular Conditions
 cellular:
-  cell_line: ""  # e.g., HeLa, HEK293, etc.
-  imaging_timepoint: ""  # When imaging occurred after treatment
+  cell_line: "cKC774 HeLa 5k essential gene iKO library"
+  imaging_timepoint: "78 hours after DOX induction"
   treatment:
-    summary: ""  # Brief description of treatment
-    details: ""  # Detailed protocol or conditions
-  plates: ""  # Number of plates
-  wells_per_plate: ""  # Number of wells per plate
+    summary: "Thawed and expanded 2 days prior to induction. 78 h DOX induction. Seeded 300k cells per well in 6-well plate 24 hours before fixation"
+    details: "Day 1 (2/26): Thaw cKC774 across 5 15cm plates with puro. Day 2 (2/27): Change media with puro. Day 3 (2/28): Change to DMEM + DOX at 6am. Day 4 (3/1): Seed 6-well plates 350k cells/well 48h before fixation (no DOX). Day 5 (3/2): Change media (no DOX). Day 6 (3/3): Fix at 1pm after mitotracker incubation"  # Detailed protocol or conditions
+  plates: "1"  # Number of plates
+  wells_per_plate: "5"  # Number of wells per plate (lost A1)
 
 # Sequencing by Synthesis (SBS)
 sbs:
-  cycles: ""  # Number of cycles
-  cycle_order: ""  # Order of cycles
-  background_channel: ""  # Suggested background channel
+  cycles: "12"  # Number of cycles (cycle 1 bad, use cycle 12)
+  cycle_order: "C7, Cy5, A549, Cy3, GFP, DNA"  # Order of cycles
+  background_channel: "GFP (vimentin and ACA)"  # Suggested background channel
   library_details:
-    number_of_genes: ""
-    guides_per_gene: ""
-    other_information: ""
+    number_of_genes: "5000"
+    guides_per_gene: "MISSING"
+    other_information: "Essential gene iKO library. Cycle 1 misaligned - use cycle 12 for segmentation. GFP and DNA included in cycles 1 & 12"
 
 # Phenotype (PH) Steps
 phenotype:
-  background_channel_cell: ""  # For cell segmentation
-  background_channel_body: ""  # For body (e.g. parasite) segmentation
+  background_channel_cell: "GFP (vimentin and ACA)"  # For cell segmentation
+  background_channel_body: "MISSING"  # For body (e.g. parasite) segmentation
   
-  # Rounds of staining/imaging (in order they were stained for each round)
-  # Add more rounds as needed
+  # Rounds of staining/imaging
   rounds:
     - round_number: 1
       stains:
-        - name: "DAPI"  # Name of stain/antibody
-          marker_of: "Nuclei"  # What it marks
-          channel: "DAPI"  # Channel used (e.g., DAPI, CY3)
-        - name: "ConA"
-          marker_of: "Cytoplasm"
+        - name: "α-CENP-T/W"
+          marker_of: "CenpT"
           channel: "AF750"
-    
+        - name: "α-Vimentin"
+          marker_of: "Vimentin"
+          channel: "CY5"
+        - name: "Mitotracker"
+          marker_of: "Active mitochondria"
+          channel: "CY3"
+        - name: "ACA"
+          marker_of: "Centromeres"
+          channel: "GFP"
+        - name: "DAPI"
+          marker_of: "DNA"
+          channel: "DAPI"
     - round_number: 2
       stains:
-        - name: ""  # Name of stain/antibody
-          marker_of: ""  # What it marks
-          channel: ""  # Channel used (e.g., DAPI, CY3)
-        - name: ""
-          marker_of: ""
-          channel: ""
+        - name: "WGA 770"
+          marker_of: "Membranes"
+          channel: "AF750"
+        - name: "α-ITGB1"
+          marker_of: "Integrin"
+          channel: "CY3"
+        - name: "DAPI"
+          marker_of: "DNA"
+          channel: "DAPI"
 
 # Data Generated
 data:
-  storage_format: ""  # e.g., .nd2, .tiff
-  location: "/lab/.."  # Base path for data storage
+  storage_format: ".nd2"  # e.g., .nd2, .tiff
+  location: "/archive/cheeseman/brieflow_screens/kilimanjaro"  # Base path for data storage
   
-  notes: ""  # Any additional notes about the data or file naming conventions
+  notes: "Goals: Search factors affecting CenpT accumulation, compare mitotracker vs COXIV, analyze vimentin and ACA in HeLa cells, assess integrin B1 effects. A1 well shattered after cycle 5 - data deleted. Changed SBS settings (reduced exposure/bit depth, optimized ex/em). Don't analyze phalloidin in round 2 - signal disappeared. Cenp-T staining quality poor. Use cycle 12 for segmentation due to cycle 1 misalignment"
