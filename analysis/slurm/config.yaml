@@ -10,7 +10,7 @@ default-resources:
     cpus_per_task: 1
     runtime: 400
     slurm_extra: "'--output=slurm/slurm_output/rule/%j.out'"
-jobs: 150
+jobs: 300
 
 set-resources:
    # preprocessing
@@ -76,7 +76,7 @@ set-resources:
         mem_mb: 2000
     segment_phenotype:
         # slurm_partition: "'nvidia-2080ti-20'"
-        mem_mb: 3000
+        mem_mb: 5000
         cpus_per_task: 4
         # slurm_extra: "'--gres=gpu:1'"
     identify_cytoplasm:
@@ -115,9 +115,9 @@ set-resources:
 
     # aggregate
     split_datasets:
-        mem_mb: 200000
+        mem_mb: 500000
     filter:
-        mem_mb: 100000
+        mem_mb: 200000
     generate_feature_table:
         mem_mb: 980000
         cpus_per_task: 4
